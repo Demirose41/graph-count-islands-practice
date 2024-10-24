@@ -1,16 +1,70 @@
-function getNeighbors(row, col, matrix) {
-  
+function getNeighbors1(row, col, matrix) {
+
+  const neighbors = []
   // Check top
+  let cord = [row - 1, col]
+  if(row != 0 &&  _isOne(cord, matrix)) neighbors.push(cord)
   // Check top right
+  cord = [row - 1, col + 1]
+  if(row != 0 && col != matrix[0].length - 1 && _isOne(cord, matrix)) neighbors.push(cord)
   // Check right
+  cord = [row, col + 1]
+  if(col != matrix[0].length && _isOne(cord, matrix)) neighbors.push(cord)
   // Check bottom right
+  cord = [row + 1, col + 1]
+  if(row != matrix.length - 1 && col != matrix[0].length && _isOne(cord, matrix)) neighbors.push(cord)
   // Check bottom
+  cord = [row + 1, col]
+  if(row != matrix.length && _isOne(cord, matrix)) neighbors.push(cord)
   // Check bottom left
+  cord = [row + 1, col - 1]
+  if(row != matrix.length - 1 && col != 0 && _isOne(cord, matrix)) neighbors.push(cord)
   // Check left
+  cord = [row - 1, col]
+  if(col != 0 && _isOne(cord, matrix)) neighbors.push(cord)
   // Check top left
+  cord = [row - 1, col - 1]
+  if(row != 0 && col != 0 && _isOne(cord, matrix)) neighbors.push(cord)
   // Return neighbors
   
+  return neighbors
   // Your code here
+}
+
+function getNeighbors(row, col, matrix) {
+
+  const neighbors = []
+  // Check top left
+  let cord = [row - 1, col - 1]
+  if(row != 0 && col != 0 && _isOne(cord, matrix)) neighbors.push(cord)
+  // Check top
+  cord = [row - 1, col]
+  if(row != 0 &&  _isOne(cord, matrix)) neighbors.push(cord)
+  // Check top right
+  cord = [row - 1, col + 1]
+  if(row != 0 && col != matrix[0].length - 1 && _isOne(cord, matrix)) neighbors.push(cord)
+  // Check right
+  cord = [row, col + 1]
+  if(col != matrix[0].length - 1 && _isOne(cord, matrix)) neighbors.push(cord)
+  // Check bottom right
+  cord = [row + 1, col + 1]
+  if(row != matrix.length - 1 && col != matrix[0].length - 1 && _isOne(cord, matrix)) neighbors.push(cord)
+  // Check bottom
+  cord = [row + 1, col]
+  if(row != matrix.length - 1 && _isOne(cord, matrix)) neighbors.push(cord)
+  // Check bottom left
+  cord = [row + 1, col - 1]
+  if(row != matrix.length - 1 && col != 0 && _isOne(cord, matrix)) neighbors.push(cord)
+  // Check left
+  cord = [row , col - 1]
+  if(col != 0 && _isOne(cord, matrix)) neighbors.push(cord)
+  // Return neighbors
+  return neighbors
+  // Your code here
+}
+
+function _isOne(cord, matrix){
+  return matrix[cord[0]][cord[1]] === 1
 }
 
 function countIslands(matrix) {
