@@ -87,6 +87,41 @@ function countIslands(matrix) {
   // Return island count
   
   // Your code here
+
+  const visited = new Set()
+  let count = 0;
+  for(let x = 0; x < matrix.length ; x++){
+    for(let y = 0; y < matrix[0].length; y++){
+      let cord = [x,y]
+      if(!visited.has(_toString(cord))){
+        let stack = [cord]  
+        visited.add(_toString(cord))
+        if(matrix[cord[0]][cord[1]] === 0) continue
+        // if(matrix[cord[0]][cord[1]] === 1){
+        //   count++
+        //   continue
+        // }
+        while(stack.length > 0){
+          let current = stack.pop()
+
+          let neighbors = getNeighbors(current[0],current[1], matrix)
+          for(const neighbor of neighbors){
+            if(!visited.has(_toString(neighbor))){
+              visited.add(_toString(neighbor))
+              stack.push(neighbor)
+            }
+          }
+        }
+      count++
+      }
+      
+    }
+  }
+  return count;
+}
+
+function _toString(cord){
+  return `${cord[0]},${cord[1]}`
 }
 
 // Uncomment the lines below for local testing
